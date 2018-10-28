@@ -1,0 +1,16 @@
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\b\WpfApp4\bin\Debug\WpfApp4.exe.config
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\b\WpfApp4\bin\Debug\WpfApp4.exe
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\b\WpfApp4\bin\Debug\WpfApp4.pdb
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4.csprojResolveAssemblyReference.cache
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\MainWindow.g.cs
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\App.g.cs
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4_MarkupCompile.cache
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4_MarkupCompile.lref
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\MainWindow.baml
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4.g.resources
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4.Properties.Resources.resources
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4.csproj.GenerateResource.cache
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4.csproj.CoreCompileInputs.cache
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4.csproj.CopyComplete
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4.exe
+C:\Users\Kubek\source\repos\WpfApp4\.vs\WpfApp4\lut\0\i\WpfApp4\Debug\WpfApp4.pdb

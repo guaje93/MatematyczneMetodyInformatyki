@@ -1,0 +1,136 @@
+﻿<Window x:Class="WpfApp4.PrismMaker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:viewModel = "clr-namespace:WpfApp4.ViewModel" 
+
+        xmlns:local="clr-namespace:WpfApp4"
+
+		xmlns:oxy="http://oxyplot.org/wpf"
+		mc:Ignorable="d"
+        Title="PrismMaker" Height="700" Width="444"
+		WindowStyle="None"
+		ResizeMode="NoResize">
+	<Window.DataContext>
+		<viewModel:PrismMakerViewModel/>
+	</Window.DataContext>
+	<Window.Resources>
+		<local:BooleanToStringValueConverter x:Key="BooleanToStringValueConverter" />
+		<local:TranslatToVisibleConverter x:Key="TranslatToVisibleConverter" />
+		<local:RotateToVisibleConverter x:Key="RotateToVisibleConverter" />
+		<local:ScaleToVisibleConverter x:Key="ScaleToVisibleConverter" />
+
+
+
+	</Window.Resources>
+
+	<StackPanel>
+		<StackPanel Orientation="Horizontal" MouseDown="StackPanel_MouseDown" Background="DarkBlue" Height="50" Margin="0,0,0,10">
+			<TextBlock Foreground="white" FontSize="24" Margin="5,5,165,5">Prism Maker</TextBlock>
+			<Image Margin="90,5,0,00" Width="40" MouseDown="Image_MouseDown" Source="pack://application:,,,/Resources/close.png"/>
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Vertical" Margin="5,5,5,10" >
+				<StackPanel Orientation="Vertical" Margin="0,0,0,0" Width=" 420" Background="LightGray">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock FontWeight="Bold" Margin="5">List of old polygon's points:</TextBlock>
+						<TextBlock FontWeight="Bold" Margin="55,5,5,5">List of new polygon's points:</TextBlock>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<DataGrid Width="200" Height="150" ItemsSource="{Binding PointsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="True" Margin="5,0,15,0" ColumnWidth="90"/>
+						<DataGrid IsReadOnly="True" Width="200" Height="150" ItemsSource="{Binding EditedPointsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="True" Margin="5,0,0,0" ColumnWidth="90"/>
+
+					</StackPanel>
+
+					<RadioButton Name="RadioButton1"
+                     GroupName="Group1"
+                     Content="Translate"
+                     IsChecked="{Binding Path=Property1, Converter={StaticResource BooleanToStringValueConverter}, ConverterParameter=Translate}" />
+					<RadioButton Name="RadioButton2"
+                     GroupName="Group1"
+                     Content="Rotate"
+                     IsChecked="{Binding Path=Property1, Converter={StaticResource BooleanToStringValueConverter}, ConverterParameter=Rotate}" />
+					<RadioButton Name="RadioButton3"
+                     GroupName="Group1"
+                     Content="Scale"
+                     IsChecked="{Binding Path=Property1, Converter={StaticResource BooleanToStringValueConverter}, ConverterParameter=Scale}" />
+
+					<StackPanel Orientation="Horizontal" Visibility="{Binding Property1,Converter={StaticResource TranslatToVisibleConverter}}">
+
+						<TextBlock Margin="5">Translate:</TextBlock>
+						<TextBlock Margin="5">x:</TextBlock>
+						<TextBox x:Name="TranslateTxtBoxX" Width="50" Height="20" Text="{Binding TranslateX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBlock Margin="5">y:</TextBlock>
+						<TextBox x:Name="TranslateTxtBoxY" Width="50" Height="20"  Text="{Binding TranslateY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Visibility="{Binding Property1,Converter={StaticResource RotateToVisibleConverter}}">
+						<TextBlock Margin="5">Rotate:</TextBlock>
+						<TextBlock Margin="5">angle:</TextBlock>
+						<TextBox x:Name="RotateTxtBox" Width="50" Height="20" Text="{Binding RotateAngle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBlock Margin="5">Base point:</TextBlock>
+						<TextBlock Margin="5" >x:</TextBlock>
+						<TextBox Width="50" Height="20" Text="{Binding RotateBasePointX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+						<TextBlock Margin="5" >y:</TextBlock>
+						<TextBox  Width="50" Height="20" Text="{Binding RotateBasePointY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Visibility="{Binding Property1,Converter={StaticResource ScaleToVisibleConverter}}">
+						<TextBlock Margin="5">Scale:</TextBlock>
+						<TextBlock Margin="5">k:</TextBlock>
+						<TextBox x:Name="ScaleTxtBox" Width="50" Height="20" Text="{Binding Scale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+						<TextBlock Margin="5">Base point:</TextBlock>
+						<TextBlock Margin="5" >x:</TextBlock>
+						<TextBox Width="50" Height="20" Text="{Binding ScaleBasePointX, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+						<TextBlock Margin="5" >y:</TextBlock>
+						<TextBox  Width="50" Height="20" Text="{Binding ScaleBasePointY, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+
+					</StackPanel>
+					<Button Width="400" Height="30" Margin="5" Background="Black" Foreground="White" Content="Calculate" Name="cmdCommand" Command="{Binding Path=ClickCommand}"/>
+
+					<oxy:Plot Height="250" Width="250">
+						<oxy:Plot.Series>
+							<oxy:LineSeries ItemsSource="{Binding PointsList2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+							<oxy:LineSeries ItemsSource="{Binding EditedPointsList2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+						</oxy:Plot.Series>
+					</oxy:Plot>
+					<StackPanel Orientation="Horizontal">
+						<StackPanel Orientation="Vertical" Margin="20,0,80,0">
+							<TextBlock>Base polygon:</TextBlock>
+								<StackPanel Orientation="Horizontal">
+								<TextBlock Width="75">Circuit:</TextBlock>
+								<TextBox IsReadOnly="True" x:Name="CirciuitListTxtBox" Text="{Binding Circuit}" Width="75"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Width="75">Area:</TextBlock>
+								<TextBox IsReadOnly="True" x:Name="AreaListTxtBox" Text="{Binding Area}" Width="75"/>
+							</StackPanel>
+						</StackPanel>
+					
+						<StackPanel Orientation="Vertical">
+							<TextBlock>Edited polygon:</TextBlock>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Width="75">Circuit:</TextBlock>
+								<TextBox IsReadOnly="True" x:Name="CirciuitEditedListTxtBox" Text="{Binding Circuit2}" Width="75"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Width="75">Area:</TextBlock>
+								<TextBox IsReadOnly="True" x:Name="AreaEditedListTxtBox" Text="{Binding Area2}" Width="75"/>
+							</StackPanel>
+						</StackPanel>
+					</StackPanel>
+				</StackPanel>
+			</StackPanel>
+
+		</StackPanel>
+
+
+
+		<StackPanel Background="LightSlateGray" Height="50" Margin="0,0,0,10">
+			<TextBlock Foreground="white" FontSize="24" Margin="5">Jakub Szymczak 217139</TextBlock>
+		</StackPanel>
+	</StackPanel>
+
+</Window>
